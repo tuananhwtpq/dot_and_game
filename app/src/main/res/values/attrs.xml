@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SimpleCircleView">
+        <attr name="circleColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="GameView">
+
+        <attr name="dotsColor" format="color" />
+        <attr name="lineColor" format="color" />
+        <attr name="player_1_color" format="color" />
+        <attr name="player_2_color" format="color" />
+
+    </declare-styleable>
+
+</resources>
