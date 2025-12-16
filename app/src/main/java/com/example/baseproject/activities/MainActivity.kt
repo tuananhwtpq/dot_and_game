@@ -1,11 +1,11 @@
 package com.example.baseproject.activities
 
-import android.view.View
+import androidx.activity.OnBackPressedCallback
 import com.example.baseproject.R
 import com.example.baseproject.bases.BaseActivity
 import com.example.baseproject.databinding.ActivityMainBinding
-import com.example.baseproject.utils.gone
 import com.example.baseproject.utils.invisible
+import com.example.baseproject.utils.setOnUnDoubleClick
 import com.example.baseproject.utils.showToast
 import com.example.baseproject.utils.visible
 
@@ -21,6 +21,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private val selectedLevel by lazy {
         intent.getStringExtra("selectedLevel") ?: "hard"
+    }
+
+    private var onBackPressCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            finish()
+        }
     }
 
 
@@ -44,10 +50,27 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         binding.tvScore2.text = "0"
         binding.btnDownPl1.visible()
         binding.btnDownPl2.invisible()
+
+        onBackPressedDispatcher.addCallback(onBackPressCallback)
     }
 
     override fun initActionView() {
+        handleGameView()
+        handleButtonClick()
 
+    }
+
+    private fun handleButtonClick() {
+        binding.btnBack.setOnUnDoubleClick {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.btnGuide.setOnUnDoubleClick {
+
+        }
+    }
+
+    private fun handleGameView() {
         binding.gameView.setListener(object : GameView.GameListener {
             override fun onGameUpdate(
                 player1Score: Int,
