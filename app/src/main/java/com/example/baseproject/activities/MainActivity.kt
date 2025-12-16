@@ -1,10 +1,13 @@
 package com.example.baseproject.activities
 
 import android.view.View
+import com.example.baseproject.R
 import com.example.baseproject.bases.BaseActivity
 import com.example.baseproject.databinding.ActivityMainBinding
 import com.example.baseproject.utils.gone
+import com.example.baseproject.utils.invisible
 import com.example.baseproject.utils.showToast
+import com.example.baseproject.utils.visible
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
@@ -17,24 +20,30 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private val selectedLevel by lazy {
-        intent.getStringExtra("selectedLevel") ?: "easy"
+        intent.getStringExtra("selectedLevel") ?: "hard"
     }
 
 
     override fun initData() {
-        val gridSize = if (selectedSize == 1) 4 else 6
+        val gridSize = when (selectedSize) {
+            1 -> 4
+            2 -> 6
+            else -> 8
+        }
         binding.gameView.setGridSize(gridSize, gridSize)
         binding.gameView.setGameMode(selectedAgainst, selectedLevel)
+
+        if (selectedAgainst == "computer") {
+            binding.ivPlayer2.setImageResource(R.drawable.iv_robot)
+        }
     }
 
     override fun initView() {
 
         binding.tvScore1.text = "0"
         binding.tvScore2.text = "0"
-        updateTurnText(1)
-
-        binding.tvPlayer2.text = if (selectedAgainst == "computer") "Computer" else " Player 2"
-
+        binding.btnDownPl1.visible()
+        binding.btnDownPl2.invisible()
     }
 
     override fun initActionView() {
@@ -47,19 +56,23 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             ) {
                 binding.tvScore1.text = player1Score.toString()
                 binding.tvScore2.text = player2Score.toString()
-                updateTurnText(currentPlayer)
+                updateBottomArrow(currentPlayer)
             }
 
             override fun onGameOver(winner: Int) {
-                when(winner){
+                when (winner) {
                     0 -> {
                         showToast("It's a draw")
                     }
+
                     1 -> {
                         showToast("Player 1 is winner!")
                     }
+
                     2 -> {
-                        if (selectedAgainst == "computer") showToast("Computer win!") else showToast("Player 2 win!")
+                        if (selectedAgainst == "computer") showToast("Computer win!") else showToast(
+                            "Player 2 win!"
+                        )
                     }
                 }
             }
@@ -67,14 +80,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         })
     }
 
-    private fun updateTurnText(currentPlayer: Int) {
+    private fun updateBottomArrow(currentPlayer: Int) {
         if (currentPlayer == 1) {
-            binding.tvTurn.text = "Player 1 turn"
+            binding.btnDownPl1.visible()
+            binding.btnDownPl2.invisible()
         } else {
-            binding.tvTurn.text =
-                if (selectedAgainst == "computer") "Computer turn" else "Player 2 turn"
+            binding.btnDownPl1.invisible()
+            binding.btnDownPl2.visible()
         }
     }
-
 
 }

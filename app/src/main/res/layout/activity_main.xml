@@ -5,94 +5,179 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_main"
+    android:padding="16dp"
     tools:context=".activities.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:id="@+id/tvTurn"
-        app:layout_constraintBottom_toTopOf="@id/gameView"
-        app:layout_constraintEnd_toEndOf="parent"
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/setting_bg_2"
+        android:padding="8dp"
+        android:src="@drawable/ic_back_detail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Player 2 turn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <com.example.baseproject.activities.GameView
-        android:id="@+id/gameView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:dotsColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/btnGuide"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:background="@drawable/setting_bg_2"
+        android:padding="8dp"
+        android:src="@drawable/ic_guide"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lineColor="@color/lineColor"
-        app:player_1_color="@color/player_one_color"
-        app:player_2_color="@color/player_two_color" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gameView">
+        app:layout_constraintTop_toBottomOf="@id/btnBack">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/btnDownPl1"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/ic_down_arrow"
+            app:layout_constraintBottom_toTopOf="@id/layoutPl1"
+            app:layout_constraintStart_toStartOf="@id/layoutPl1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Player 1"
-                android:id="@+id/tvPlayer1"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutPl1"
+            android:layout_width="105dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/play_with_fr_bg_2"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/layoutVersus"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivPlayer1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_player_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvScore_1"
+                style="@style/mHeading.H2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="30dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivPlayer1"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="0" />
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
+            android:id="@+id/layoutVersus"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_height="50dp"
+            android:background="@drawable/versus_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Player 2"
-                android:id="@+id/tvPlayer2"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:fontFamily="@font/hvdtrial_mikado_bold"
+                android:text="V"
+                android:textColor="#5CA7FF"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hvdtrial_mikado_bold"
+                android:text="S"
+                android:textColor="#F55D5D"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btnDownPl2"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="4dp"
+            android:visibility="invisible"
+            android:src="@drawable/ic_down_arrow"
+            app:layout_constraintBottom_toTopOf="@id/layoutPl2"
+            app:layout_constraintEnd_toEndOf="@id/layoutPl2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutPl2"
+            android:layout_width="105dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/play_with_fr_bg_2_red"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layoutVersus"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivPlayer2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_player_red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvScore_2"
+                style="@style/mHeading.H2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ivPlayer2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+    <com.example.baseproject.activities.GameView
+        android:id="@+id/gameView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        app:dotsColor="@color/white"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTop"
+        app:lineColor1="@color/lineColor"
+        app:lineColor2="@color/lineColor2"
+        app:player_1_color="@color/player_one_color"
+        app:player_2_color="@color/player_two_color" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

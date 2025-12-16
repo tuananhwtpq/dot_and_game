@@ -14,66 +14,82 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
-    <style name="mHeading" parent="singleLineTxt"/>
+    <style name="mHeading" parent="singleLineTxt" />
+
+    <style name="Display">
+        <item name="fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">32sp</item>
+    </style>
 
     <style name="mHeading.H1" parent="mHeading">
-        <item name="android:fontFamily">@font/nunito_sans_bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">26sp</item>
     </style>
 
     <style name="mHeading.H2" parent="mHeading">
-        <item name="android:fontFamily">@font/nunito_sans_semi_bold</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="mHeading.H3" parent="mHeading">
-        <item name="android:fontFamily">@font/nunito_sans_semi_bold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">22sp</item>
     </style>
 
     <style name="mHeading.H4" parent="mHeading">
-        <item name="android:fontFamily">@font/nunito_sans_semi_bold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="mTxt">
-        <item name="android:includeFontPadding">false</item>
-    </style>
+    <style name="Sub" parent="singleLineTxt" />
 
-    <style name="mTxt.P1" parent="mTxt">
-        <item name="fontFamily">@font/nunito_sans_medium</item>
+    <style name="Sub.s1" parent="Sub">
+        <item name="fontFamily">@font/hvdtrial_mikado_medium</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="mTxt.P2" parent="mTxt">
-        <item name="fontFamily">@font/nunito_sans_medium</item>
+    <style name="Sub.s2" parent="Sub">
+        <item name="fontFamily">@font/hvdtrial_mikado_medium</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="mMeta" parent="singleLineTxt"/>
-
-    <style name="mMeta.m1M" parent="mMeta">
-        <item name="fontFamily">@font/nunito_sans_medium</item>
+    <style name="Sub.s3" parent="Sub">
+        <item name="fontFamily">@font/hvdtrial_mikado_medium</item>
         <item name="android:textSize">12sp</item>
     </style>
-    <style name="mMeta.m1" parent="mMeta">
-        <item name="fontFamily">@font/nunito_sans_regular</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-    <style name="mMeta.m2" parent="mMeta">
-        <item name="fontFamily">@font/nunito_sans_regular</item>
-        <item name="android:textSize">10sp</item>
-    </style>
 
-    <style name="mBtn" parent="singleLineTxt"/>
+    <style name="Body" parent="singleLineTxt"/>
 
-    <style name="mBtn.a1" parent="mMeta">
-        <item name="fontFamily">@font/nunito_sans_semi_bold</item>
+    <style name="Body.L" parent="Body">
+        <item name="fontFamily">@font/hvdtrial_mikado_regular</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="mBtn.a2" parent="mMeta">
-        <item name="fontFamily">@font/nunito_sans_semi_bold</item>
+    <style name="Body.M" parent="Body">
+        <item name="fontFamily">@font/hvdtrial_mikado_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Body.S" parent="Body">
+        <item name="fontFamily">@font/hvdtrial_mikado_regular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Button" parent="singleLineTxt"/>
+
+    <style name="Button.L" parent="Button">
+        <item name="fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Button.M" parent="Button">
+        <item name="fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Button.S" parent="Button">
+        <item name="fontFamily">@font/hvdtrial_mikado_bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

@@ -33,6 +33,10 @@
     <string name="message_intro_1">It has never been easier to become an animator with simple approach</string>
     <string name="message_intro_2">Create animation in your own unique manner with basic drawings</string>
     <string name="message_intro_3">Create animation by drawing a line with your finger.</string>
+    <string name="dots_amp_boxes" translatable="false"><![CDATA[DOTS & BOXES]]></string>
+    <string name="game_challenge" translatable="false">GAME CHALLENGE</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

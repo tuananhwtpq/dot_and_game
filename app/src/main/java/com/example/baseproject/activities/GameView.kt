@@ -29,9 +29,8 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private var cols = 4
     private var rows = 4
-
-    private val dotRadius = 15f
-    private val strokeWidth = 10f
+    private var dotRadius = 25f
+    private val strokeWidth = 20f
 
     private var cellWidth = 0f
     private var cellHeight = 0f
@@ -52,7 +51,7 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     private var currentPlayer = 1
     private var isPvE = false
-    private var difficulty = "easy"
+    private var difficulty = "hard"
 
     private var currentPlayerOneScore = 0
     private var currentPlayerTwoScore = 0
@@ -60,6 +59,24 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var TOUCH_SIZE = 50f
 
     private val handler = Handler(Looper.getMainLooper())
+
+    private var dotPaintColor: Int = resources.getColor(R.color.dotColor)
+    private var linePainColor: Int = resources.getColor(R.color.lineColor)
+
+    private var playerOneBoxPaintColor: Int = resources.getColor(R.color.player_one_color)
+    private var playerTwoBoxPaintColor: Int = resources.getColor(R.color.player_two_color)
+
+
+    private val boardBackgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val cellColorEvenPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val cellColorOddPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+
+    private var boardBackgroundColor: Int = Color.parseColor("#C39CE2")
+    private var cellColorEven: Int = Color.parseColor("#522277")
+    private var cellColorOdd: Int = Color.parseColor("#411960")
+
+    private var linePaintColor1: Int = resources.getColor(R.color.lineColor)
+    private var linePaintColor2: Int = resources.getColor(R.color.lineColor2)
 
     private fun initGameData() {
         horizontalLines = Array(rows + 1) { IntArray(cols) { 0 } }
@@ -74,19 +91,36 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.GameView, 0, 0)
 
         try {
-//            initGameData()
-            val dotPaintColor = typedArray.getColor(R.styleable.GameView_dotsColor, Color.BLACK)
+
+            //setup size of dot with each gridsize
+
+            //setup dot paint color
+            dotPaintColor = typedArray.getColor(R.styleable.GameView_dotsColor, Color.WHITE)
             dotPaint.color = dotPaintColor
 
-            val linePainColor = typedArray.getColor(R.styleable.GameView_lineColor, Color.GREEN)
+            //setup Line normal
+            linePainColor = typedArray.getColor(R.styleable.GameView_lineColor1, Color.BLUE)
             linePaint.color = linePainColor
             linePaint.strokeWidth = strokeWidth
 
-            playerOneBoxPaint.color =
-                typedArray.getColor(R.styleable.GameView_player_1_color, Color.RED)
 
-            playerTwoBoxPaint.color =
-                typedArray.getColor(R.styleable.GameView_player_2_color, Color.CYAN)
+            //setup right choose box paint of each
+            playerOneBoxPaintColor =
+                typedArray.getColor(R.styleable.GameView_player_1_color, Color.BLACK)
+            playerOneBoxPaint.color = playerOneBoxPaintColor
+
+            playerTwoBoxPaintColor =
+                typedArray.getColor(R.styleable.GameView_player_2_color, Color.GREEN)
+            playerTwoBoxPaint.color = playerTwoBoxPaintColor
+
+            //setup line paint of player
+            linePaintColor1 = typedArray.getColor(R.styleable.GameView_lineColor1, Color.GREEN)
+            linePaintColor2 = typedArray.getColor(R.styleable.GameView_lineColor2, Color.GREEN)
+
+            //setup background
+            boardBackgroundPaint.color = boardBackgroundColor
+            cellColorEvenPaint.color = cellColorEven
+            cellColorOddPaint.color = cellColorOdd
 
         } catch (e: Exception) {
             Toast.makeText(
@@ -117,8 +151,17 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         this.cols = columns
         this.rows = rows
         calculateDimensions()
+        setupDotSize(columns)
         initGameData()
         invalidate()
+    }
+
+    fun setupDotSize(cols: Int){
+        dotRadius = when(cols){
+            4 -> 25f
+            6 -> 20f
+            else -> 15f
+        }
     }
 
     fun setGameMode(playAgainst: String, level: String) {
@@ -128,21 +171,32 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         invalidate()
     }
 
-
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        //draw box
+        val cornerRadius = 40f
+        canvas.drawRoundRect(
+            0f, 0f, width.toFloat(), height.toFloat(),
+            cornerRadius, cornerRadius, boardBackgroundPaint
+        )
+
         for (col in 0 until cols) {
             for (row in 0 until rows) {
+
+                val left = gridPadding + (col * cellWidth)
+                val top = gridPadding + (row * cellHeight)
+                val right = gridPadding + ((col + 1) * cellWidth)
+                val bottom = gridPadding + ((row + 1) * cellHeight)
+
                 val status = boxes[row][col]
 
-                if (status != 0) {
-                    val left = gridPadding + (col * cellWidth)
-                    val top = gridPadding + (row * cellHeight)
-                    val right = gridPadding + ((col + 1) * cellWidth)
-                    val bottom = gridPadding + ((row + 1) * cellHeight)
-
+                if (status == 0) {
+                    if ((col + row) % 2 == 0) {
+                        canvas.drawRect(left, top, right, bottom, cellColorEvenPaint)
+                    } else {
+                        canvas.drawRect(left, top, right, bottom, cellColorOddPaint)
+                    }
+                } else {
                     val paint = if (status == 1) playerOneBoxPaint else playerTwoBoxPaint
                     canvas.drawRect(left, top, right, bottom, paint)
                 }
@@ -158,15 +212,14 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
                 val status = verticalLines[col][row]
 
-                if (status == 0) {
-                    linePaint.color = Color.LTGRAY
-                    canvas.drawLine(lineX, startY, lineX, stopY, linePaint)
-                } else {
-                    linePaint.color = if (status == 1) Color.RED else Color.CYAN
+                if (status != 0) {
+                    linePaint.color =
+                        if (status == 1) linePaintColor1 else linePaintColor2
                     canvas.drawLine(lineX, startY, lineX, stopY, linePaint)
                 }
             }
         }
+
         //draw horizontal line
         for (row in 0..rows) {
             for (col in 0 until cols) {
@@ -176,11 +229,9 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
                 val status = horizontalLines[row][col]
 
-                if (status == 0) {
-                    linePaint.color = Color.LTGRAY
-                    canvas.drawLine(startX, lineY, stopX, lineY, linePaint)
-                } else {
-                    linePaint.color = if (status == 1) Color.RED else Color.CYAN
+                if (status != 0) {
+                    linePaint.color =
+                        if (status == 1) linePaintColor1 else linePaintColor2
                     canvas.drawLine(startX, lineY, stopX, lineY, linePaint)
                 }
             }
@@ -189,15 +240,12 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         //draw dots
         for (i in 0..cols) {
             for (j in 0..rows) {
-
                 val cx = gridPadding + (i * cellWidth)
                 val cy = gridPadding + (j * cellHeight)
-
                 canvas.drawCircle(cx, cy, dotRadius, dotPaint)
             }
         }
     }
-
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
 

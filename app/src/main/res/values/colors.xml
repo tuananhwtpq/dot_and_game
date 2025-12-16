@@ -9,8 +9,14 @@
     <color name="colorDisable">#A5A5A5</color>
     <color name="colorError">#F24B4C</color>
     <color name="colorBackground">#FAF8F4</color>
-    <color name="dotColor">#1A1918</color>
-    <color name="lineColor">#DEA635</color>
-    <color name="player_one_color">#39D7EB</color>
-    <color name="player_two_color">#F87B54</color>
+    <color name="dotColor">#FFFFFF</color>
+    <color name="lineColor">#3391FF</color>
+    <color name="lineColor2">#FF4E4E</color>
+    <color name="player_one_color">#245A9A</color>
+    <color name="player_two_color">#731B1B</color>
+    <color name="purple">#A33AF6</color>
+    <color name="yellow">#FFB840</color>
+    <color name="blue">#5CA7FF</color>
+    <color name="green">#79FA58</color>
+    <color name="red">#FF6755</color>
 </resources>
