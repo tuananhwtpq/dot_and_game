@@ -6,35 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main"
+    android:layoutDirection="ltr"
     tools:context=".activities.StartActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
         android:layout_marginTop="16dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:layout_marginHorizontal="16dp"
+        android:src="@drawable/dot_and_box_bg_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvTitleBig"
-            style="@style/mHeading.H1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dots_amp_boxes"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/tvTitleSmall"
-            style="@style/mHeading.H4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/game_challenge"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,10 +40,12 @@
 
             <TextView
                 style="@style/mHeading.H4"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
+                android:gravity="center"
+                android:id="@+id/tvGridSize"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Grid size"
+                android:text="@string/grid_size"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -73,8 +59,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@drawable/grid_size_selector"
+                    android:gravity="center"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="16dp"
                     android:text="4X4"
@@ -91,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/grid_size_selector"
-                    android:paddingHorizontal="10dp"
                     android:gravity="center"
+                    android:paddingHorizontal="10dp"
                     android:paddingVertical="16dp"
                     android:text="6X6"
                     android:textColor="@color/black" />
@@ -108,8 +94,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/grid_size_selector"
-                    android:paddingHorizontal="10dp"
                     android:gravity="center"
+                    android:paddingHorizontal="10dp"
                     android:paddingVertical="16dp"
                     android:text="8X8"
                     android:textColor="@color/black" />
@@ -135,12 +121,12 @@
                 android:src="@drawable/ic_friend" />
 
             <TextView
+                android:id="@+id/tvPlayWithFriend"
                 style="@style/mHeading.H3"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:id="@+id/tvPlayWithFriend"
-                android:text="Play with friends"
+                android:text="@string/play_with_friends"
                 android:textColor="@color/white" />
         </LinearLayout>
 
@@ -161,12 +147,12 @@
                 android:src="@drawable/ic_computer" />
 
             <TextView
+                android:id="@+id/tvPlayWithAI"
                 style="@style/mHeading.H3"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:gravity="start"
-                android:id="@+id/tvPlayWithAI"
-                android:text="Play with AI"
+                android:text="@string/play_with_ai"
                 android:textColor="@color/white" />
         </LinearLayout>
 

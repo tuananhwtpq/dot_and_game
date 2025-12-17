@@ -1,12 +1,13 @@
 package com.example.baseproject.activities
 
+import android.content.Intent
 import androidx.activity.OnBackPressedCallback
 import com.example.baseproject.R
 import com.example.baseproject.bases.BaseActivity
 import com.example.baseproject.databinding.ActivityMainBinding
+import com.example.baseproject.fragments.ExitGameDialog
 import com.example.baseproject.utils.invisible
 import com.example.baseproject.utils.setOnUnDoubleClick
-import com.example.baseproject.utils.showToast
 import com.example.baseproject.utils.visible
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
@@ -25,7 +26,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
     private var onBackPressCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            finish()
+            val dialog = ExitGameDialog.newInstance()
+            dialog.show(supportFragmentManager, ExitGameDialog.TAG)
         }
     }
 
@@ -57,7 +59,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun initActionView() {
         handleGameView()
         handleButtonClick()
-
     }
 
     private fun handleButtonClick() {
@@ -66,7 +67,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         }
 
         binding.btnGuide.setOnUnDoubleClick {
-
+            val intent = Intent(this, GuideActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -83,24 +85,56 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             }
 
             override fun onGameOver(winner: Int) {
-                when (winner) {
-                    0 -> {
-                        showToast("It's a draw")
-                    }
 
-                    1 -> {
-                        showToast("Player 1 is winner!")
-                    }
+                binding.root.postDelayed({
+                    val intent = Intent(this@MainActivity, ResultActivity::class.java)
+                    intent.putExtra("winner", winner)
+                    intent.putExtra("score1", binding.tvScore1.text.toString().toInt())
+                    intent.putExtra("score2", binding.tvScore2.text.toString().toInt())
+                    intent.putExtra("mode", selectedAgainst)
+                    intent.putExtra("selectedSize", selectedSize)
+                    intent.putExtra("selectedLevel", selectedLevel)
+                    startActivity(intent)
+                    finish()
+                }, 500)
+            }
 
-                    2 -> {
-                        if (selectedAgainst == "computer") showToast("Computer win!") else showToast(
-                            "Player 2 win!"
-                        )
-                    }
-                }
+            override fun onExtraTurn(player: Int) {
+                showExtraTurnAnimation(player)
             }
 
         })
+    }
+
+    private fun showExtraTurnAnimation(player: Int) {
+
+        if (selectedAgainst == "computer" && player == 2) {
+            return
+        }
+
+        if (selectedAgainst == "computer") {
+            binding.playerTurn.text = getString(R.string.you_get_an_extra_turn)
+        } else {
+            if (player == 1) {
+                binding.playerTurn.text = getString(R.string.blue_gets_an_extra_turn)
+            } else {
+                binding.playerTurn.text = getString(R.string.red_gets_an_extra_turn)
+            }
+        }
+
+        binding.layoutOverlay.visible()
+        binding.layoutOverlay.alpha = 0f
+        binding.layoutOverlay.animate().alpha(1f).setDuration(300).start()
+
+        binding.layoutOverlay.postDelayed({
+            binding.layoutOverlay.animate()
+                .alpha(0f)
+                .setDuration(300)
+                .withEndAction {
+                    binding.layoutOverlay.invisible()
+                }
+                .start()
+        }, 500)
     }
 
     private fun updateBottomArrow(currentPlayer: Int) {

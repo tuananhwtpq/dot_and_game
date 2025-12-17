@@ -19,4 +19,7 @@
     <color name="blue">#5CA7FF</color>
     <color name="green">#79FA58</color>
     <color name="red">#FF6755</color>
+    <color name="orange">#FFB840</color>
+    <color name="extra_turn_bg">#979693</color>
+    <color name="lose_color">#A6A6A6</color>
 </resources>

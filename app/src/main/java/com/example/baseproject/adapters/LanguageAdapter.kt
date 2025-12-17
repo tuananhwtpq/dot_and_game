@@ -4,17 +4,21 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.res.ResourcesCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.baseproject.R
 import com.example.baseproject.databinding.ItemLanguageBinding
 import com.example.baseproject.models.LanguageModel
 import com.example.baseproject.utils.Common
 
-class LanguageAdapter(private val context: Context, private val languageList: MutableList<LanguageModel>, val onFirstSelect: () -> Unit) :
+class LanguageAdapter(
+    private val context: Context,
+    private val languageList: MutableList<LanguageModel>,
+    val onFirstSelect: () -> Unit
+) :
     RecyclerView.Adapter<LanguageAdapter.ViewHolder>() {
 
-    private var selectedLanguage : LanguageModel? = null
+    private var selectedLanguage: LanguageModel? = null
         set(value) {
             if (field == null) {
                 onFirstSelect()
@@ -35,14 +39,16 @@ class LanguageAdapter(private val context: Context, private val languageList: Mu
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val language = languageList[position]
-        if (selectedLanguage == language){
+        if (selectedLanguage == language) {
             holder.binding.layoutRoot.setBackgroundResource(R.drawable.bg_language_selected)
             holder.binding.ivRadio.setImageResource(R.drawable.ic_checked_language)
-            holder.binding.languageName.typeface = ResourcesCompat.getFont(context, R.font.nunito_sans_semi_bold)
-        }else{
+//            holder.binding.languageName.typeface = ResourcesCompat.getFont(context, R.font.nunito_sans_semi_bold)
+            holder.binding.languageName.setTextColor(ContextCompat.getColor(context, R.color.white))
+        } else {
             holder.binding.layoutRoot.setBackgroundResource(R.drawable.bg_language_unselected)
-            holder.binding.ivRadio.setImageResource(R.drawable.ic_unchecked_language)
-            holder.binding.languageName.typeface = ResourcesCompat.getFont(context, R.font.nunito_sans_regular)
+            holder.binding.ivRadio.setImageResource(R.drawable.ic_unckecked_language)
+//            holder.binding.languageName.typeface = ResourcesCompat.getFont(context, R.font.nunito_sans_regular)
+            holder.binding.languageName.setTextColor(ContextCompat.getColor(context, R.color.black))
         }
 
         holder.binding.ivLanguage.setImageResource(language.img)
@@ -52,12 +58,13 @@ class LanguageAdapter(private val context: Context, private val languageList: Mu
 
         holder.itemView.setOnClickListener {
             selectedLanguage = language
+            holder.binding.languageName.setTextColor(ContextCompat.getColor(context, R.color.white))
             notifyDataSetChanged()
         }
 
     }
 
-    fun getSelectedPositionLanguage() : LanguageModel? {
+    fun getSelectedPositionLanguage(): LanguageModel? {
         return selectedLanguage
     }
 

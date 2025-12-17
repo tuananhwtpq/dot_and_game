@@ -6,15 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_main"
-    android:padding="16dp"
+    android:layoutDirection="ltr"
     tools:context=".activities.MainActivity">
 
     <ImageView
         android:id="@+id/btnBack"
         android:layout_width="42dp"
         android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/setting_bg_2"
-        android:padding="8dp"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp"
         android:src="@drawable/ic_back_detail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +27,8 @@
         android:id="@+id/btnGuide"
         android:layout_width="42dp"
         android:layout_height="42dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/setting_bg_2"
         android:padding="8dp"
         android:src="@drawable/ic_guide"
@@ -122,8 +128,8 @@
             android:layout_height="16dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="4dp"
-            android:visibility="invisible"
             android:src="@drawable/ic_down_arrow"
+            android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@id/layoutPl2"
             app:layout_constraintEnd_toEndOf="@id/layoutPl2" />
 
@@ -168,6 +174,7 @@
         android:id="@+id/gameView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
         app:dotsColor="@color/white"
         app:layout_constraintDimensionRatio="1:1"
@@ -178,6 +185,73 @@
         app:lineColor2="@color/lineColor2"
         app:player_1_color="@color/player_one_color"
         app:player_2_color="@color/player_two_color" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:src="@drawable/bg_confetti"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/bg_awesome"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:src="@drawable/bg_awesome"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvAwesome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="@font/hvdtrial_mikado_ultra"
+            android:text="@string/awesome"
+            android:textColor="#FFEA00"
+            android:textSize="32sp"
+            app:layout_constraintBottom_toBottomOf="@id/bg_awesome"
+            app:layout_constraintEnd_toEndOf="@id/bg_awesome"
+            app:layout_constraintStart_toStartOf="@id/bg_awesome"
+            app:layout_constraintTop_toTopOf="@id/bg_awesome" />
+
+        <TextView
+            android:id="@+id/playerTurn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hvdtrial_mikado_medium"
+            android:textColor="#FFEA00"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/tvAwesome"
+            app:layout_constraintStart_toStartOf="@id/tvAwesome"
+            app:layout_constraintTop_toBottomOf="@id/tvAwesome"
+            tools:text="Blue gets an extra turn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

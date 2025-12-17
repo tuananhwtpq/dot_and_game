@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layoutDirection="ltr"
+    android:layout_height="match_parent"
+    tools:context=".activities.ResultActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineSplit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutWinner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue"
+        app:layout_constraintBottom_toTopOf="@id/guidelineSplit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/contentContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivCrown"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/win_crown" />
+
+            <com.example.baseproject.utils.TextViewOutlineSecond
+                android:id="@+id/tvWinnerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/hvdtrial_mikado_ultra"
+                tools:text="Blue Win!"
+                android:textColor="#FFBB00"
+                android:textSize="32sp"
+                app:outlineColor="@color/white"
+                app:outlineSize="10dp" />
+
+            <TextView
+                android:id="@+id/tvWinnerScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/hvdtrial_mikado_bold"
+                tools:text="12"
+                android:textColor="@color/white"
+                android:textSize="56sp" />
+
+            <LinearLayout
+                android:id="@+id/layoutButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btnHome"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/setting_bg_2"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_home" />
+
+                <ImageView
+                    android:id="@+id/btnReplay"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/setting_bg_2"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_replay" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutLoser"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineSplit">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.example.baseproject.utils.TextViewOutlineSecond
+                android:id="@+id/tvLoserText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/hvdtrial_mikado_ultra"
+                android:text="Red Lose"
+                android:textColor="#A6A6A6"
+                tools:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:outlineColor="@color/white"
+                app:outlineSize="10dp" />
+
+            <TextView
+                android:id="@+id/tvLoserScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/hvdtrial_mikado_bold"
+                tools:text="4"
+                android:textColor="@color/white"
+                android:textSize="56sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLoserText" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

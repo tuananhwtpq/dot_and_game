@@ -33,10 +33,49 @@
     <string name="message_intro_1">It has never been easier to become an animator with simple approach</string>
     <string name="message_intro_2">Create animation in your own unique manner with basic drawings</string>
     <string name="message_intro_3">Create animation by drawing a line with your finger.</string>
-    <string name="dots_amp_boxes" translatable="false"><![CDATA[DOTS & BOXES]]></string>
-    <string name="game_challenge" translatable="false">GAME CHALLENGE</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="failed_to_share">Failed to Share</string>
+    <string name="you_get_an_extra_turn">You get an extra turn</string>
+    <string name="blue_gets_an_extra_turn">Blue gets an extra turn</string>
+    <string name="red_gets_an_extra_turn">Red gets an extra turn</string>
+    <string name="you_win">You Win!</string>
+    <string name="blue_win">Blue Win!</string>
+    <string name="red_lose">Red Lose</string>
+    <string name="you_lose">You Lose:(</string>
+    <string name="red_win">Red Win!</string>
+    <string name="blue_lose">Blue Lose</string>
+    <string name="draw">Draw!</string>
+    <string name="ready_for_dot_battle">Ready For Dot Battle</string>
+    <string name="friends_or_ai_which_challenge_will_you_choose">Friends or AI which challenge will you choose?</string>
+    <string name="master_boxes_crush_rivals">Master Boxes Crush Rivals</string>
+    <string name="complete_boxes_and_defeat_every_opponent">Complete boxes and defeat every opponent</string>
+    <string name="play_smart_win_big">Play Smart - Win Big</string>
+    <string name="fill_the_board_and_become_the_winner">Fill the board and become the winner!</string>
+    <string name="get_started">Get Started</string>
+    <string name="how_to_play">How To Play?</string>
+    <string name="step_1">Step 1:</string>
+    <string name="players_take_turns_drawing_one_line_between_two_adjacent_dots">Players take turns drawing one line between two adjacent dots.</string>
+    <string name="step_2">Step 2:</string>
+    <string name="complete_a_box_to_earn_an_extra_turn_the_player_with_the_most_boxes_wins">Complete a box to earn an extra turn. The player with the most boxes wins.</string>
+    <string name="tip">Tip:</string>
+    <string name="sometimes_giving_up_a_box_can_help_you_win_more_later_think_ahead_and_play_smart">Sometimes giving up a box can help you win more later. Think ahead and play smart!</string>
+    <string name="settings">Settings</string>
+    <string name="feedback">Feedback</string>
+    <string name="share_app">Share App</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="this_action_can_contain_ads">This action can contain ads</string>
+    <string name="grid_size">Grid size</string>
+    <string name="play_with_friends">Play with friends</string>
+    <string name="play_with_ai">Play with AI</string>
+    <string name="choose_level">CHOOSE LEVEL</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="play">Play</string>
+    <string name="exit_game">EXIT GAME?</string>
+    <string name="wait_wait_one_more_round_please">Wait wait! One more round please...</string>
+    <string name="exit">Exit</string>
+    <string name="stay">Stay</string>
+    <string name="awesome">Awesome!</string>
 
 
 </resources>

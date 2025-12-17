@@ -3,30 +3,32 @@
     android:id="@+id/layoutRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
     android:layout_margin="6dp"
+    android:layoutDirection="ltr"
     android:background="@drawable/bg_language_unselected"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:padding="12dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivLanguage"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/ic_english"/>
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/ic_english" />
 
     <TextView
         android:id="@+id/language_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="12dp"
-        android:fontFamily="@font/nunito_sans_regular"
-        android:gravity="start|center_vertical"
-        android:singleLine="true"
         android:ellipsize="end"
+        android:fontFamily="@font/hvdtrial_mikado_medium"
+        android:gravity="start|center_vertical"
+        android:includeFontPadding="false"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
         android:text="@string/english"
-        android:textColor="@color/colorTextTitle"
-        android:textSize="14sp"
-        android:includeFontPadding="false"/>
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 
     <View
         android:layout_width="0dp"
@@ -34,9 +36,9 @@
         android:layout_weight="1" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRadio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_checked_language"
-        android:id="@+id/ivRadio"/>
+        android:src="@drawable/ic_unckecked_language" />
 
 </LinearLayout>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="ltr"
     android:layout_height="wrap_content"
     tools:context=".fragments.ExitGameDialog">
 
@@ -25,7 +26,7 @@
             android:gravity="center"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="EXIT GAME?"
+            android:text="@string/exit_game"
             android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="@drawable/three_level_bg"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -50,11 +51,13 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
-                android:fontFamily="@font/hvdtrial_mikado_medium"
                 android:gravity="center"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:fontFamily="@font/hvdtrial_mikado_medium"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
-                android:text="Wait wait! One more round please..."
+                android:text="@string/wait_wait_one_more_round_please"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -73,13 +76,13 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tvExit"
                         style="@style/Button.L"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="16dp"
-                        android:text="Exit"
                         android:gravity="center"
-                        android:id="@+id/tvExit"
+                        android:paddingVertical="16dp"
+                        android:text="@string/exit"
                         android:textColor="@color/purple" />
 
                 </LinearLayout>
@@ -97,13 +100,13 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tvStay"
                         style="@style/Button.L"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="16dp"
-                        android:text="Stay"
-                        android:id="@+id/tvStay"
                         android:gravity="center"
+                        android:paddingVertical="16dp"
+                        android:text="@string/stay"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

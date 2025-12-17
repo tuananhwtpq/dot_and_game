@@ -1,17 +1,11 @@
 package com.example.baseproject.activities
 
 import android.content.Intent
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.baseproject.R
 import com.example.baseproject.bases.BaseActivity
 import com.example.baseproject.databinding.ActivityStartBinding
 import com.example.baseproject.fragments.ChooseLevelDialog
-import com.example.baseproject.utils.gone
-import com.example.baseproject.utils.visible
+import com.example.baseproject.utils.SharedPrefManager
+import com.example.baseproject.utils.setOnUnDoubleClick
 
 class StartActivity : BaseActivity<ActivityStartBinding>(ActivityStartBinding::inflate) {
 
@@ -41,6 +35,20 @@ class StartActivity : BaseActivity<ActivityStartBinding>(ActivityStartBinding::i
             selectedAgainst = "computer"
             showLevelDialog()
         }
+
+        binding.btnSetting.setOnUnDoubleClick {
+            startActivity(Intent(this, SettingActivity::class.java))
+        }
+
+        binding.btnGuide.setOnUnDoubleClick {
+            SharedPrefManager.putBoolean("isFromHome", true)
+            val intent = Intent(this, GuideActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvGridSize.isSelected = true
+        binding.tvPlayWithFriend.isSelected = true
+        binding.tvPlayWithAI.isSelected = true
     }
 
     private fun setupSizeSelect() {

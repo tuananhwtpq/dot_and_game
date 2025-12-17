@@ -11,14 +11,14 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import com.example.baseproject.R
-import java.lang.Exception
-import kotlin.coroutines.Continuation
 
 class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
     interface GameListener {
         fun onGameUpdate(player1Score: Int, player2Score: Int, currentPlayer: Int)
         fun onGameOver(winner: Int)
+
+        fun onExtraTurn(player: Int)
     }
 
     private var gameListener: GameListener? = null
@@ -156,8 +156,8 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
         invalidate()
     }
 
-    fun setupDotSize(cols: Int){
-        dotRadius = when(cols){
+    fun setupDotSize(cols: Int) {
+        dotRadius = when (cols) {
             4 -> 25f
             6 -> 20f
             else -> 15f
@@ -266,7 +266,6 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             val x = rawX.coerceIn(gridPadding, width - gridPadding)
             val y = rawY.coerceIn(gridPadding, height - gridPadding)
 
-
             //Check range of top bottom left right
             val c = ((x - gridPadding) / cellWidth).toInt()
             val r = ((y - gridPadding) / cellHeight).toInt()
@@ -280,7 +279,6 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             val distBottom = cellHeight - valY
 
             val minDiff = minOf(distLeft, distRight, distTop, distBottom)
-
             if (minDiff > TOUCH_SIZE) {
                 return false
             }
@@ -323,6 +321,9 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
             }
 
             if (moveMade) {
+                if (scored) {
+                    gameListener?.onExtraTurn(currentPlayer)
+                }
                 if (!scored) {
                     currentPlayer = if (currentPlayer == 1) 2 else 1
                 }
@@ -332,9 +333,7 @@ class GameView(context: Context, attrs: AttributeSet) : View(context, attrs) {
                     currentPlayerTwoScore,
                     currentPlayer
                 )
-
                 isGameOver()
-
                 if (isPvE && currentPlayer == 2 && !scored) {
                     if (!isGameOver()) {
                         computerTurn()

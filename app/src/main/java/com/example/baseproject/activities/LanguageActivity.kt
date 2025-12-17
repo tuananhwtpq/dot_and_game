@@ -14,6 +14,7 @@ import com.example.baseproject.databinding.ActivityLanguageBinding
 import com.example.baseproject.utils.Common
 import com.example.baseproject.utils.Constants
 import com.example.baseproject.utils.gone
+import com.example.baseproject.utils.invisible
 import com.example.baseproject.utils.visible
 import kotlinx.coroutines.launch
 
@@ -36,10 +37,12 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
     }
 
     override fun initActionView() {
+        binding.ivDone.invisible()
         if (!isFromHome) {
             binding.ivBack.gone()
         } else {
             binding.ivBack.visible()
+            binding.ivDone.visible()
             binding.ivBack.setOnClickListener {
                 finish()
             }
@@ -69,7 +72,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         } else {
-            val intent = Intent(this@LanguageActivity, MainActivity::class.java)
+            val intent = Intent(this@LanguageActivity, StartActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
@@ -81,7 +84,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>(ActivityLanguageB
             this@LanguageActivity,
             languageList
         ) {
-            //todo: first select
+            binding.ivDone.visible()
         }
         binding.rcvLanguage.apply {
             layoutManager = LinearLayoutManager(this@LanguageActivity)

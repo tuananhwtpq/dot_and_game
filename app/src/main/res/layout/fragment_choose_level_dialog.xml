@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layoutDirection="ltr"
     tools:context=".fragments.ChooseLevelDialog">
 
     <ImageView
@@ -35,7 +36,7 @@
             android:fontFamily="@font/hvdtrial_mikado_ultra"
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
-            android:text="CHOOSE LEVEL"
+            android:text="@string/choose_level"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -82,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="16dp"
-                        android:text="Easy"
+                        android:text="@string/easy"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -116,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="16dp"
-                        android:text="Medium"
+                        android:text="@string/medium"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="16dp"
-                        android:text="Hard"
+                        android:text="@string/hard"
                         android:textColor="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -174,7 +175,7 @@
                     android:gravity="center"
                     android:id="@+id/tvPlay"
                     android:paddingVertical="16dp"
-                    android:text="Play"
+                    android:text="@string/play"
                     android:textColor="@color/white" />
 
             </LinearLayout>
