@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Base Project</string>
+    <string name="app_name" translatable="false">Dots And Boxes Game Challenge</string>
 
     <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="fb_app_id" translatable="false"></string>
